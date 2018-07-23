@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
+  before_action :require_user_logged_in, except: [:index]#下記の一連前に、before_ac：但しexcept: [:index]に関してはエクゼクトプ。覗くという。
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks.page(params[:page]) if logged_in?
   end
-
 
   def show
   end
